@@ -8,7 +8,6 @@ class Themes {
     timePickerTheme: TimePickerThemeData(
       shape:
       RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),
-    visualDensity: VisualDensity.adaptivePlatformDensity,
     fontFamily: 'Poppins',
     brightness: Brightness.light,
     primaryColor: const Color(0xFF5C85C1).withOpacity(0.8),
@@ -19,9 +18,8 @@ class Themes {
     timePickerTheme: TimePickerThemeData(
         shape:
         RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),
-    visualDensity: VisualDensity.adaptivePlatformDensity,
     fontFamily: 'Poppins',
-    brightness: Brightness.dark,
+    brightness: Brightness.light,
     primaryColor: const Color(0xFF5C85C1).withOpacity(0.8),
     backgroundColor: const Color(0xFF121212),
   );

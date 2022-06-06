@@ -1,6 +1,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:task_me/foundation/root_page.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
@@ -93,8 +95,8 @@ class _SignUpState extends State<SignUp> {
                                     ),
                                     border: OutlineInputBorder(
                                       borderSide: BorderSide(
-                                          width: 1,
-                                          color: const Color(0xFF5C85C1).withOpacity(0.3)
+                                          width: 0.9,
+                                          color: Get.isDarkMode?Colors.black:Colors.black
                                       ),
                                       borderRadius: BorderRadius.circular(19),
                                     ),
@@ -140,8 +142,8 @@ class _SignUpState extends State<SignUp> {
                                     ),
                                     border: OutlineInputBorder(
                                       borderSide: BorderSide(
-                                          width: 1,
-                                          color: const Color(0xFF5C85C1).withOpacity(0.3)
+                                          width: 0.9,
+                                          color:  Get.isDarkMode?Colors.black:Colors.black
                                       ),
                                       borderRadius: BorderRadius.circular(19),
                                     ),
@@ -198,8 +200,8 @@ class _SignUpState extends State<SignUp> {
                                       ),
                                       border: OutlineInputBorder(
                                         borderSide: BorderSide(
-                                            width: 1,
-                                            color: const Color(0xFF5C85C1).withOpacity(0.3)
+                                            width: 0.9,
+                                            color:  Get.isDarkMode?Colors.black:Colors.black
                                         ),
                                         borderRadius: BorderRadius.circular(19),
                                       ),

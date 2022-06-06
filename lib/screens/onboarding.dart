@@ -65,7 +65,7 @@ class _OnBoardingState extends State<OnBoarding> {
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                 color: Color(0xFF2B3849),
-                                fontSize:28,
+                                fontSize:24,
                               ),),
                             SizedBox(
                                 height: MediaQuery.of(context).size.height * 0.02
@@ -75,7 +75,7 @@ class _OnBoardingState extends State<OnBoarding> {
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                 color: Colors.black54,
-                                fontSize: 17,
+                                fontSize: 15,
                                   fontFamily: 'Roboto'
                               ),),
                             SizedBox(
@@ -128,7 +128,7 @@ class _OnBoardingState extends State<OnBoarding> {
               ),
             ),
             SizedBox(
-                height: MediaQuery.of(context).size.height * 0.12),
+                height: MediaQuery.of(context).size.height * 0.09),
           ],
         ),
       ),

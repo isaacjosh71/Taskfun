@@ -1,5 +1,7 @@
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:task_me/validations/log_option.dart';
 import 'package:task_me/validations/phone_page.dart';
 import 'package:task_me/validations/sign_up.dart';
@@ -62,9 +64,10 @@ class _SignOptionState extends State<SignOption> {
                                     MediaQuery.of(context).size.height * 0.06
                                   ),
                                   const SizedBox(width: 7,),
-                                  const Text('Continue with google',
+                                  Text('Continue with google',
                                   style: TextStyle(
-                                    fontSize: 18
+                                    fontSize: 18,
+                                    color: Get.isDarkMode?Colors.black:Colors.black
                                   ),),
                                 ],
                               ),
@@ -92,9 +95,10 @@ class _SignOptionState extends State<SignOption> {
                                     height: MediaQuery.of(context).size.height * 0.06
                                   ),
                                   const SizedBox(width: 7),
-                                  const Text('Use email and password',
+                                  Text('Use email and password',
                                   style: TextStyle(
-                                    fontSize: 18
+                                    fontSize: 18,
+                                      color: Get.isDarkMode?Colors.black:Colors.black
                                   ),),
                                 ],
                               ),
@@ -122,9 +126,10 @@ class _SignOptionState extends State<SignOption> {
                                     height: MediaQuery.of(context).size.height * 0.05
                                   ),
                                   const SizedBox(width: 7),
-                                  const Text('Use phone number',
+                                   Text('Use phone number',
                                   style: TextStyle(
-                                    fontSize: 18
+                                    fontSize: 18,
+                                      color: Get.isDarkMode?Colors.black:Colors.black
                                   ),),
                                 ],
                               ),

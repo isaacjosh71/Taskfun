@@ -144,18 +144,18 @@ class _HomePageState extends State<HomePage> {
                 height: MediaQuery
                     .of(context)
                     .size
-                    .height * 0.015,
+                    .height * 0.02,
               ),
               DatePicker(
                 DateTime.now(),
                 height: MediaQuery
                     .of(context)
                     .size
-                    .height * 0.12,
+                    .height * 0.13,
                 width: MediaQuery
                     .of(context)
                     .size
-                    .width * 0.19,
+                    .width * 0.18,
                 initialSelectedDate: DateTime.now(),
                 selectionColor: const Color(0xFF5C85C1).withOpacity(0.8),
                 selectedTextColor: Colors.white,
@@ -193,7 +193,7 @@ class _HomePageState extends State<HomePage> {
                 height: MediaQuery
                     .of(context)
                     .size
-                    .height * 0.015,
+                    .height * 0.03,
               ),
               const Text('My Tasks',
                 style: TextStyle(
