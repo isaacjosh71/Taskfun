@@ -1,5 +1,6 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../foundation/root_page.dart';
@@ -19,6 +20,7 @@ class TaskView extends StatefulWidget {
 }
 
 class _TaskViewState extends State<TaskView> {
+  static final FirebaseAuth auth = FirebaseAuth.instance;
   late TextEditingController _titleController;
   late TextEditingController _descriptionController;
   late DateTime _selectedDate;
@@ -300,7 +302,7 @@ class _TaskViewState extends State<TaskView> {
   _validateData() {
     if (_titleController.text.isNotEmpty &&
         _descriptionController.text.isNotEmpty) {
-      FirebaseFirestore.instance.collection('TaskFun').doc(widget.id).update(
+      FirebaseFirestore.instance.collection('TaskFun').doc(auth.currentUser!.uid).collection('UserData').doc(widget.id).update(
           {'Title': _titleController.text,
             'Description': _descriptionController.text,
             'Date': DateFormat.yMd().format(_selectedDate),

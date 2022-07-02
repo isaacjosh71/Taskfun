@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-
 import '../foundation/root_page.dart';
 
 class AuthClass{
@@ -16,6 +15,10 @@ class AuthClass{
   final FirebaseAuth auth = FirebaseAuth.instance;
   final storage = const FlutterSecureStorage();
 
+
+  Future<String> getCurrentUID() async{
+    return auth.currentUser!.uid;
+  }
 
   Future<void> googleSignIn(BuildContext context) async {
     try{
@@ -89,7 +92,6 @@ class AuthClass{
     storeTokenAndDta(userCredential);
     Navigator.pushAndRemoveUntil(context,
         MaterialPageRoute(builder: (builder)=> const RootPage()), (route) => false);
-
     showSnackBar(context, 'signed in');
   }
   void showSnackBar(BuildContext context, String text){

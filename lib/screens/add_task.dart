@@ -1,5 +1,6 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../foundation/root_page.dart';
@@ -20,15 +21,12 @@ class _AddTaskState extends State<AddTask> {
   DateTime _selectedDate = DateTime.now();
   TimeOfDay _startTime =  const TimeOfDay(hour: 12, minute: 00);
   TimeOfDay _endTime =  const TimeOfDay(hour: 12, minute: 00);
-  // int _selectedReminder = 5;
-  // List<int> remindList= [
-  //   5, 10, 15, 20
-  // ];
   String _selectedRepeat = 'None';
   List<String> repeatList= [
     'None', 'Daily', 'Weekly', 'Monthly'
   ];
   int _selectedColor = 0;
+  final FirebaseAuth auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     final hours = _startTime.hour.toString().padLeft(2, '0');
@@ -254,9 +252,9 @@ class _AddTaskState extends State<AddTask> {
       ),
     );
   }
-  _validateData(){
+  _validateData() async{
     if(_titleController.text.isNotEmpty&&_descriptionController.text.isNotEmpty){
-      FirebaseFirestore.instance.collection('TaskFun').add(
+      FirebaseFirestore.instance.collection('TaskFun').doc(auth.currentUser!.uid).collection('UserData').add(
         {'Title':_titleController.text,
           'Description':_descriptionController.text,
           'Date':DateFormat.yMd().format(_selectedDate),

@@ -25,7 +25,7 @@ class _LogInState extends State<LogIn> {
       backgroundColor: const Color(0XFFFAFEF9),
       body:
             SafeArea(
-              minimum: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.25),
+              minimum: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.20),
               child: SingleChildScrollView(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,

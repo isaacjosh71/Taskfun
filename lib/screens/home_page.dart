@@ -1,8 +1,8 @@
 
-
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:date_picker_timeline/date_picker_timeline.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -20,7 +20,6 @@ import '../validations/auth_service.dart';
 import '../validations/log_option.dart';
 import '../widgets/ads.dart';
 import 'package:get/get.dart';
-
 
 
 class HomePage extends StatefulWidget {
@@ -44,14 +43,14 @@ class _HomePageState extends State<HomePage> {
     loadImage();
   }
 
-  AuthClass authClass = AuthClass();
-  final Stream<QuerySnapshot<Object>> _stream = FirebaseFirestore.instance
-      .collection('TaskFun').snapshots();
+  static final FirebaseAuth auth = FirebaseAuth.instance;
+  static AuthClass authClass = AuthClass();
+   Stream<QuerySnapshot<Object>> diffUserStream =
+   FirebaseFirestore.instance.collection('TaskFun').doc(auth.currentUser!.uid).collection('UserData').snapshots();
 
   final ImagePicker _picker = ImagePicker();
 
   String? _imagePath;
-
 
 
   @override
@@ -201,7 +200,7 @@ class _HomePageState extends State<HomePage> {
                   fontWeight: FontWeight.w500,
                 ),),
               StreamBuilder(
-                stream: _stream,
+                stream: diffUserStream,
                 builder: (BuildContext context,
                     AsyncSnapshot<dynamic> snapshot) {
                   if (!snapshot.hasData) {
@@ -209,7 +208,7 @@ class _HomePageState extends State<HomePage> {
                       elevation: 0,
                       color: context.theme.backgroundColor,
                       child: Center(
-                        child: Text('No Task Created',
+                        child: Text('Loading...',
                           style: subHeadingStyle,),
                       ),
                     );
@@ -332,10 +331,10 @@ class _HomePageState extends State<HomePage> {
                                         setState(() {
                                           FirebaseFirestore.instance.collection(
                                               'TaskFun')
-                                              .doc(snapshot.data.docs[index].id)
-                                              .delete()
-                                              .then((value) =>
-                                              Get.to(const RootPage())
+                                              .doc(auth.currentUser!.uid).collection('UserData').
+                                          doc(snapshot.data.docs[index].id).delete().
+                                          then((value) =>
+                                              Get.to(()=> const RootPage())
                                           );
                                         });
                                       },
@@ -503,10 +502,10 @@ class _HomePageState extends State<HomePage> {
                                         setState(() {
                                           FirebaseFirestore.instance.collection(
                                               'TaskFun')
-                                              .doc(snapshot.data.docs[index].id)
-                                              .delete()
-                                              .then((value) =>
-                                              Get.to(const RootPage())
+                                              .doc(auth.currentUser!.uid).collection('UserData').
+                                          doc(snapshot.data.docs[index].id).delete().
+                                              then((value) =>
+                                              Get.to(()=> const RootPage())
                                           );
                                         });
                                       },
@@ -614,7 +613,7 @@ class _HomePageState extends State<HomePage> {
   void loadImage() async{
     SharedPreferences saveImage = await SharedPreferences.getInstance();
     setState((){
-      _imagePath = saveImage.getString('imagepath')!;
+      _imagePath = saveImage.getString('imagePath');
     });
   }
 }
