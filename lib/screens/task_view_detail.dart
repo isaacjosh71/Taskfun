@@ -34,7 +34,6 @@ class _TaskViewState extends State<TaskView> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     String _title = widget.document['Title']??'Null';
     _titleController = TextEditingController(text: _title);
@@ -55,6 +54,7 @@ class _TaskViewState extends State<TaskView> {
     final endHours = _endTime.hour.toString().padLeft(2, '0');
     final endMinutes = _endTime.minute.toString().padLeft(2, '0');
     return Scaffold(
+      backgroundColor: context.theme.backgroundColor,
       appBar: AppBar(
         backgroundColor: context.theme.backgroundColor,
         elevation: 0,

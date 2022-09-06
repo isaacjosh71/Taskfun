@@ -342,6 +342,7 @@ class _HomePageState extends State<HomePage> {
                                       child: InkWell(
                                         onTap: () {
                                           showDialog(context: context,
+                                              barrierColor: context.theme.backgroundColor,
                                               builder: (context) {
                                                 return Padding(
                                                   padding: EdgeInsets.symmetric(
@@ -350,6 +351,7 @@ class _HomePageState extends State<HomePage> {
                                                           .size
                                                           .height * 0.38),
                                                   child: AlertDialog(
+                                                    backgroundColor: context.theme.backgroundColor,
                                                     content: GestureDetector(
                                                       onTap: () {
                                                         Navigator.push(
@@ -368,6 +370,7 @@ class _HomePageState extends State<HomePage> {
                                                                     .fade));
                                                       },
                                                       child: Container(
+                                                        color: context.theme.backgroundColor,
                                                         height: MediaQuery
                                                             .of(context)
                                                             .size

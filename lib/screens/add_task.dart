@@ -34,6 +34,7 @@ class _AddTaskState extends State<AddTask> {
     final endHours = _endTime.hour.toString().padLeft(2, '0');
     final endMinutes = _endTime.minute.toString().padLeft(2, '0');
     return Scaffold(
+      backgroundColor: context.theme.backgroundColor,
       appBar: AppBar(
       backgroundColor: context.theme.backgroundColor,
       elevation: 0,

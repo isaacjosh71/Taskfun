@@ -26,7 +26,7 @@ class _TaskTileState extends State<TaskTile> {
     return Padding(
       padding: const EdgeInsets.only(right: 11, top: 12),
       child: Container(
-        height: MediaQuery.of(context).size.height * 0.13,
+        height: MediaQuery.of(context).size.height * 0.16,
         width: MediaQuery.of(context).size.width,
         child: Card(
           elevation: 1,
