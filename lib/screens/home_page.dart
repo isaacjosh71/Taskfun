@@ -611,7 +611,7 @@ class _HomePageState extends State<HomePage> {
 
   void _saveImage (path) async{
     SharedPreferences saveImage = await SharedPreferences.getInstance();
-    saveImage.setString('imagepath', path);
+    saveImage.setString('imagePath', path);
   }
 
   void loadImage() async{
