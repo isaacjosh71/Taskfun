@@ -50,6 +50,7 @@ class AuthClass{
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
   }
+
   Future<void> storeTokenAndDta(UserCredential userCredential) async {
     await storage.write(key: 'token', value: userCredential.credential?.token.toString());
     await storage.write(key: 'userCredential', value: userCredential.toString());
@@ -57,6 +58,7 @@ class AuthClass{
   Future<String?> getToken () async{
     return await storage.read(key: 'token');
   }
+
   Future<void> logOut()async {
       await _googleSignIn.signOut();
       await auth.signOut();

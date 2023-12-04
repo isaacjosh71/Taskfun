@@ -224,7 +224,7 @@ class _HomePageState extends State<HomePage> {
                             Map<String, dynamic> document = snapshot.data
                                 .docs[index].data() as Map<String, dynamic>;
                             switch (document['Color']) {
-                              case 0:
+                              case true:
                                 tileColor = Colors.pink.shade300;
                                 break;
                               case 1:

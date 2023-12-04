@@ -14,26 +14,27 @@ class NotifyHelper {
 
   initializeNotification() async {
     _configureLocalTimeZone();
-    final IOSInitializationSettings initializationSettingsIOS =
-    IOSInitializationSettings(
-        requestSoundPermission: false,
-        requestBadgePermission: false,
-        requestAlertPermission: false,
-        onDidReceiveLocalNotification: onDidReceiveLocalNotification
-    );
+    // final IOSInitializationSettings initializationSettingsIOS =
+    // IOSInitializationSettings(
+    //     requestSoundPermission: false,
+    //     requestBadgePermission: false,
+    //     requestAlertPermission: false,
+    //     onDidReceiveLocalNotification: onDidReceiveLocalNotification
+    // );
 
 
     const  AndroidInitializationSettings initializationSettingsAndroid =
          AndroidInitializationSettings('appicon');
 
-      final InitializationSettings initializationSettings =
+      const InitializationSettings initializationSettings =
       InitializationSettings(
-      iOS: initializationSettingsIOS,
+      // iOS: initializationSettingsIOS,
       android:initializationSettingsAndroid,
     );
     await flutterLocalNotificationsPlugin.initialize(
         initializationSettings,
-        onSelectNotification: selectNotification);
+        // onSelectNotification: selectNotification
+        );
   }
 
   Future selectNotification(String? payload) async {
@@ -89,9 +90,11 @@ class NotifyHelper {
     var androidPlatformChannelSpecifics = const AndroidNotificationDetails(
         'your channel id', 'your channel name',
         importance: Importance.max, priority: Priority.high);
-    var iOSPlatformChannelSpecifics = const IOSNotificationDetails();
+    // var iOSPlatformChannelSpecifics = const IOSNotificationDetails();
     var platformChannelSpecifics = NotificationDetails(
-        android: androidPlatformChannelSpecifics, iOS: iOSPlatformChannelSpecifics);
+        android: androidPlatformChannelSpecifics,
+        // iOS: iOSPlatformChannelSpecifics
+    );
     await flutterLocalNotificationsPlugin.show(
       0,
       title,

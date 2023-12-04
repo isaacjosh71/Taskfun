@@ -94,7 +94,7 @@ class _PhonePageState extends State<PhonePage> {
                                           wait= true;
                                           buttonName = 'Resend';
                                         });
-                                        authClass.verifyPhoneNumber('+234 ${_phoneController.text}',
+                                        authClass.verifyPhoneNumber('+234${_phoneController.text}',
                                             context, setData);
                                       },
                                       child: Padding(
