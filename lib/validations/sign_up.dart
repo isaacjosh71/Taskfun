@@ -34,7 +34,7 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0XFFFAFEF9),
+      backgroundColor: context.theme.backgroundColor,
       body:
             SafeArea(
               minimum: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.20),
@@ -83,7 +83,7 @@ class _SignUpState extends State<SignUp> {
                                   },
                                   keyboardType: TextInputType.emailAddress,
                                   controller: _mailController,
-                                  cursorColor: Colors.black,
+                                  cursorColor:  Get.isDarkMode ? Colors.white : Colors.black,
                                   showCursor: true,
                                   decoration: InputDecoration(
                                     focusedBorder: OutlineInputBorder(
@@ -101,13 +101,13 @@ class _SignUpState extends State<SignUp> {
                                       borderRadius: BorderRadius.circular(19),
                                     ),
                                     labelText: 'Email',
-                                    labelStyle: const TextStyle(
+                                    labelStyle: TextStyle(
                                       fontSize: 17,
                                       fontWeight: FontWeight.w500,
-                                      color: Color(0xFF455A64),
+                                      color: Get.isDarkMode ? Colors.white: Colors.black87,
                                     ),
-                                    prefixIcon: const Icon(Icons.email_outlined,
-                                      size: 17, color: Colors.black87,),
+                                    prefixIcon: Icon(Icons.email_outlined,
+                                      size: 17, color: Get.isDarkMode ? Colors.white :  Colors.black87,),
                                   ),
                                 ),
                               ),
@@ -129,7 +129,7 @@ class _SignUpState extends State<SignUp> {
                                   },
                                   onSaved: (value){},
                                   controller: _passController,
-                                  cursorColor: Colors.black,
+                                  cursorColor:  Get.isDarkMode ? Colors.white : Colors.black,
                                   showCursor: true,
                                   obscureText: _obscureText,
                                   decoration: InputDecoration(
@@ -148,13 +148,13 @@ class _SignUpState extends State<SignUp> {
                                       borderRadius: BorderRadius.circular(19),
                                     ),
                                     labelText: 'Password',
-                                    labelStyle: const TextStyle(
+                                    labelStyle: TextStyle(
                                       fontSize: 17,
                                       fontWeight: FontWeight.w500,
-                                      color: Color(0xFF455A64),
+                                      color: Get.isDarkMode ? Colors.white: Colors.black87,
                                     ),
-                                    prefixIcon: const Icon(Icons.lock_open_rounded,
-                                        size: 18, color: Colors.black87,),
+                                    prefixIcon: Icon(Icons.lock_open_rounded,
+                                        size: 18, color:  Get.isDarkMode ? Colors.white : Colors.black87,),
                                     suffixIcon: GestureDetector(
                                       onTap: (){
                                         setState(() {
@@ -163,7 +163,7 @@ class _SignUpState extends State<SignUp> {
                                       },
                                       child: Icon(_obscureText? Icons.visibility
                                           : Icons.visibility,
-                                          size: 18,color: Colors.black87),
+                                          size: 18,color:  Get.isDarkMode ? Colors.white : Colors.black87),
                                     ),
                                     ),
                                   ),
@@ -206,13 +206,13 @@ class _SignUpState extends State<SignUp> {
                                         borderRadius: BorderRadius.circular(19),
                                       ),
                                       labelText: 'Confirm Password',
-                                        labelStyle: const TextStyle(
+                                        labelStyle: TextStyle(
                                           fontSize: 17,
                                           fontWeight: FontWeight.w500,
-                                          color: Color(0xFF455A64),
+                                          color: Get.isDarkMode ? Colors.white: Colors.black87,
                                         ),
-                                      prefixIcon: const Icon(Icons.lock_open_rounded,
-                                        size: 18, color: Colors.black87,),
+                                      prefixIcon: Icon(Icons.lock_open_rounded,
+                                        size: 18, color: Get.isDarkMode ? Colors.white : Colors.black87,),
                                       suffixIcon: GestureDetector(
                                         onTap: (){
                                           setState(() {
@@ -221,7 +221,7 @@ class _SignUpState extends State<SignUp> {
                                         },
                                         child: Icon(_obscuredText? Icons.visibility
                                             : Icons.visibility,
-                                            size: 18,color: Colors.black87),
+                                            size: 18,color: Get.isDarkMode ? Colors.white : Colors.black87),
                                       ),
                                     ),
                                   ),
@@ -272,7 +272,8 @@ class _SignUpState extends State<SignUp> {
     );
   }
   Future<void> storeTokenAndDta(UserCredential userCredential) async {
-    await storage.write(key: 'token', value: userCredential.credential?.token.toString());
+    await storage.write(key: 'token', value: userCredential.user!.uid);
+    print(userCredential.user!.uid);
     await storage.write(key: 'userCredential', value: userCredential.toString());
   }
 

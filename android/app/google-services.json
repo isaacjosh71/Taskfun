@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "1098394658131",
+    "firebase_url": "https://task-fun-app-default-rtdb.firebaseio.com",
     "project_id": "task-fun-app",
     "storage_bucket": "task-fun-app.appspot.com"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "1098394658131-3fafirls9e3trgur1kg94mq25sug7su1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.task_me",
+            "certificate_hash": "c3fcf22fae3e1a98894838a8bd0d35eeec407c79"
+          }
+        },
         {
           "client_id": "1098394658131-rdvibintgihb1dr4r8h9cd4nibnt1ebi.apps.googleusercontent.com",
           "client_type": 3

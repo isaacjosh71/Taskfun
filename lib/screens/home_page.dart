@@ -70,7 +70,8 @@ class _HomePageState extends State<HomePage> {
                 });
                 _saveImage(image!.path);
               },
-              child: _imagePath!= null?CircleAvatar(
+              child: _imagePath!= null
+                  ? CircleAvatar(
                 backgroundImage: FileImage(File(_imagePath!)),
                 radius: 70,
               )

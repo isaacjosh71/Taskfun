@@ -50,7 +50,7 @@ class _AddTaskState extends State<AddTask> {
           ),),
         title: Padding(
           padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.15),
-          child: const Text('Add Task'),
+          child: Text('Add Task', style: TextStyle(color: Get.isDarkMode? Colors.white: Colors.black),),
         ),
         titleTextStyle: headingStyle,
     ),
@@ -63,6 +63,7 @@ class _AddTaskState extends State<AddTask> {
               children: [
                 InputForm(title: 'Title',
                     hint: 'Enter your task title',
+
                     controller: _titleController,
                     widget: null,),
                 InputForm(title: 'Description',

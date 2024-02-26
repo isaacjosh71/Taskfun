@@ -2,19 +2,23 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:sizer/sizer.dart';
+import 'package:task_me/firebase_options.dart';
 import 'package:task_me/foundation/notification_services.dart';
 import 'package:task_me/foundation/theme_services.dart';
 import 'package:task_me/foundation/themes.dart';
 import 'package:task_me/foundation/root_page.dart';
 import 'package:task_me/screens/splash.dart';
 import 'package:task_me/validations/auth_service.dart';
+import 'package:task_me/validations/log_in.dart';
 import 'package:task_me/validations/sign_up.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   await GetStorage.init();
   await NotifyHelper().initializeNotification();
   runApp(const MyApp());
@@ -31,6 +35,7 @@ class _MyAppState extends State<MyApp> {
   Widget currentPage = const Splash();
   AuthClass authClass = AuthClass();
   SignUp signUp = const SignUp();
+  LogIn login = const LogIn();
 
   @override
   void initState() {
@@ -38,6 +43,7 @@ class _MyAppState extends State<MyApp> {
     super.initState();
     checkLogIn();
     stillCheckLogIn();
+    stillCheckLoggIn();
   }
 
   void checkLogIn() async {
@@ -51,6 +57,15 @@ class _MyAppState extends State<MyApp> {
 
   void stillCheckLogIn() async {
     String? token = await signUp.getToken();
+    if (token != null){
+      setState(() {
+        currentPage = const RootPage();
+      });
+    }
+  }
+
+  void stillCheckLoggIn() async {
+    String? token = await login.getToken();
     if (token != null){
       setState(() {
         currentPage = const RootPage();

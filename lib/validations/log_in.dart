@@ -1,12 +1,21 @@
 
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:get/get.dart';
 import '../foundation/root_page.dart';
 import '../validations/forgot_password.dart';
 
 class LogIn extends StatefulWidget {
   const LogIn({Key? key}) : super(key: key);
+
+  final storage = const FlutterSecureStorage();
+
+  Future<String?> getToken () async{
+    return await storage.read(key: 'token');
+  }
 
   @override
   State<LogIn> createState() => _LogInState();
@@ -18,11 +27,12 @@ class _LogInState extends State<LogIn> {
   final TextEditingController _passController = TextEditingController();
   bool _obscureText = true;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final storage = const FlutterSecureStorage();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0XFFFAFEF9),
+      backgroundColor: context.theme.backgroundColor,
       body:
             SafeArea(
               minimum: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.20),
@@ -89,13 +99,13 @@ class _LogInState extends State<LogIn> {
                                     borderRadius: BorderRadius.circular(19),
                                   ),
                                   labelText: 'Email',
-                                  labelStyle: const TextStyle(
+                                  labelStyle: TextStyle(
                                     fontSize: 17,
                                     fontWeight: FontWeight.w500,
-                                    color: Color(0xFF455A64),
+                                    color: Get.isDarkMode ? Colors.white: Colors.black87,
                                   ),
-                                  prefixIcon: const Icon(Icons.email_outlined,
-                                    size: 17, color: Colors.black87,),
+                                  prefixIcon: Icon(Icons.email_outlined,
+                                    size: 17, color: Get.isDarkMode ? Colors.white: Colors.black87,),
                                 ),
                               ),
                             ),
@@ -117,7 +127,7 @@ class _LogInState extends State<LogIn> {
                                 },
                                 onSaved: (value){},
                                 controller: _passController,
-                                cursorColor: Colors.black,
+                                cursorColor: Get.isDarkMode ? Colors.white:  Colors.black,
                                 showCursor: true,
                                 obscureText: _obscureText,
                                 decoration: InputDecoration(
@@ -136,13 +146,13 @@ class _LogInState extends State<LogIn> {
                                     borderRadius: BorderRadius.circular(19),
                                   ),
                                   labelText: 'Password',
-                                  labelStyle: const TextStyle(
+                                  labelStyle: TextStyle(
                                     fontSize: 17,
                                     fontWeight: FontWeight.w500,
-                                    color: Color(0xFF455A64),
+                                    color: Get.isDarkMode ? Colors.white: Colors.black87,
                                   ),
-                                  prefixIcon: const Icon(Icons.lock_open_rounded,
-                                    size: 18, color: Colors.black87,),
+                                  prefixIcon: Icon(Icons.lock_open_rounded,
+                                    size: 18, color: Get.isDarkMode ? Colors.white: Colors.black87,),
                                   suffixIcon: GestureDetector(
                                     onTap: (){
                                       setState(() {
@@ -151,7 +161,7 @@ class _LogInState extends State<LogIn> {
                                     },
                                     child: Icon(_obscureText? Icons.visibility
                                         : Icons.visibility,
-                                        size: 18,color: Colors.black87),
+                                        size: 18,color: Get.isDarkMode ? Colors.white: Colors.black87),
                                   ),
                                 ),
                               ),
@@ -199,8 +209,10 @@ class _LogInState extends State<LogIn> {
                                   onPressed: () async{
                                     try {
                                       if(_formKey.currentState!.validate()){
+                                        UserCredential userCredential =
                                         await firebaseAuth.signInWithEmailAndPassword(
                                             email: _mailController.text, password: _passController.text);
+                                        storeTokenAndDta(userCredential);
                                         Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
                                             builder: (builder)=> const RootPage()), (route) => false);
                                       }
@@ -220,6 +232,11 @@ class _LogInState extends State<LogIn> {
               ),
             ),
     );
+  }
+  Future<void> storeTokenAndDta(UserCredential userCredential) async {
+    await storage.write(key: 'token', value: userCredential.user!.uid);
+    print(userCredential.user!.uid);
+    await storage.write(key: 'userCredential', value: userCredential.toString());
   }
 }
 

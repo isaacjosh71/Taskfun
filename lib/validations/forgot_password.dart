@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
+import 'package:get/get.dart';
 import 'package:task_me/validations/log_in.dart';
 import '../foundation/root_page.dart';
 
@@ -20,7 +21,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0XFFFAFEF9),
+      backgroundColor: context.theme.backgroundColor,
       body:
       SafeArea(
         minimum: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.25),
@@ -69,7 +70,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                           },
                           keyboardType: TextInputType.emailAddress,
                           controller: _mailController,
-                          cursorColor: Colors.black,
+                          cursorColor:  Get.isDarkMode ? Colors.white : Colors.black,
                           showCursor: true,
                           decoration: InputDecoration(
                             focusedBorder: OutlineInputBorder(
@@ -92,8 +93,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                               fontWeight: FontWeight.w500,
                               color: Color(0xFF455A64),
                             ),
-                            prefixIcon: const Icon(Icons.email_outlined,
-                              size: 17, color: Colors.black87,),
+                            prefixIcon: Icon(Icons.email_outlined,
+                              size: 17, color:  Get.isDarkMode ? Colors.white : Colors.black87,),
                           ),
                         ),
                       ),

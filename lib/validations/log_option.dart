@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:sizer/sizer.dart';
 import 'package:task_me/validations/auth_service.dart';
 import 'package:task_me/validations/log_in.dart';
 import 'package:task_me/validations/phone_page.dart';
@@ -19,7 +20,7 @@ class _LogOptionState extends State<LogOption> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0XFFFAFEF9),
+      backgroundColor: context.theme.backgroundColor,
       body:
             SafeArea(
               minimum: EdgeInsets.only(
@@ -50,7 +51,7 @@ class _LogOptionState extends State<LogOption> {
                             },
                             child: Card(
                               color: Colors.white.withOpacity(0.97),
-                              elevation: 4,
+                              elevation: 3,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(15),
                                   side: BorderSide.none
@@ -72,7 +73,12 @@ class _LogOptionState extends State<LogOption> {
                             ),
                           ),
                           SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.03,
+                            height: MediaQuery.of(context).size.height * 0.032,
+                          ),
+                          Center(child: Text('OR', style: TextStyle(fontSize: 15.sp,color: const Color(0xFF2B3849),
+                            fontWeight: FontWeight.w500,),)),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.032,
                           ),
                           InkWell(
                             onTap: (){
@@ -81,7 +87,7 @@ class _LogOptionState extends State<LogOption> {
                             },
                             child: Card(
                               color: Colors.white.withOpacity(0.97),
-                              elevation: 4,
+                              elevation: 3,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(15),
                                   side: BorderSide.none
@@ -102,37 +108,37 @@ class _LogOptionState extends State<LogOption> {
                               ),
                             ),
                           ),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.03,
-                          ),
-                          InkWell(
-                            onTap: (){
-                              Navigator.push(context, MaterialPageRoute(
-                                  builder: (builder)=> const PhonePage()));
-                            },
-                            child: Card(
-                              color: Colors.white.withOpacity(0.97),
-                              elevation: 4,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(15),
-                                  side: BorderSide.none
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Image.asset('assets/images/phone.png',
-                                    height: MediaQuery.of(context).size.height * 0.05,
-                                  ),
-                                  const SizedBox(width: 10,),
-                                Text('Use phone number',
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        color: Get.isDarkMode?Colors.black:Colors.black
-                                    ),),
-                                ],
-                              ),
-                            ),
-                          ),
+                          // SizedBox(
+                          //   height: MediaQuery.of(context).size.height * 0.03,
+                          // ),
+                          // InkWell(
+                          //   onTap: (){
+                          //     Navigator.push(context, MaterialPageRoute(
+                          //         builder: (builder)=> const PhonePage()));
+                          //   },
+                          //   child: Card(
+                          //     color: Colors.white.withOpacity(0.97),
+                          //     elevation: 3,
+                          //     shape: RoundedRectangleBorder(
+                          //         borderRadius: BorderRadius.circular(15),
+                          //         side: BorderSide.none
+                          //     ),
+                          //     child: Row(
+                          //       mainAxisAlignment: MainAxisAlignment.center,
+                          //       children: [
+                          //         Image.asset('assets/images/phone.png',
+                          //           height: MediaQuery.of(context).size.height * 0.05,
+                          //         ),
+                          //         const SizedBox(width: 10,),
+                          //       Text('Use phone number',
+                          //           style: TextStyle(
+                          //               fontSize: 18,
+                          //               color: Get.isDarkMode?Colors.black:Colors.black
+                          //           ),),
+                          //       ],
+                          //     ),
+                          //   ),
+                          // ),
                           Padding(
                             padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.005,
                                 top: 40),

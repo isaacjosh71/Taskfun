@@ -1,4 +1,6 @@
 
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:task_me/model/contents.dart';
 import 'package:flutter/material.dart';
 import 'package:task_me/validations/sign_option.dart';
@@ -30,7 +32,7 @@ class _OnBoardingState extends State<OnBoarding> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFDFFFD),
+      backgroundColor: context.theme.backgroundColor,
       body: SafeArea(
         minimum:  EdgeInsets.only(top:
         MediaQuery.of(context).size.height * 0.07),
@@ -73,8 +75,8 @@ class _OnBoardingState extends State<OnBoarding> {
                             Text(
                               contents[i].description,
                               textAlign: TextAlign.center,
-                              style: const TextStyle(
-                                color: Colors.black54,
+                              style: TextStyle(
+                                color: Get.isDarkMode ? Colors.white70 :  Colors.black54,
                                 fontSize: 15,
                                   fontFamily: 'Roboto'
                               ),),
@@ -119,7 +121,7 @@ class _OnBoardingState extends State<OnBoarding> {
                     children: [
                       Text(currentIndex == contents.length -1
                           ? 'Get Started' : 'Next',
-                        style: const TextStyle(color: Colors.black54,
+                        style: TextStyle(color: Get.isDarkMode ? Colors.white70 : Colors.black54,
                             fontSize: 17),),
                       const Icon(Icons.navigate_next_sharp),
                     ],

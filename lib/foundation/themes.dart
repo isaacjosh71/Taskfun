@@ -19,9 +19,27 @@ class Themes {
         shape:
         RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),
     fontFamily: 'Poppins',
-    brightness: Brightness.light,
+    brightness: Brightness.dark,
     primaryColor: const Color(0xFF5C85C1).withOpacity(0.8),
     backgroundColor: const Color(0xFF121212),
+  );
+}
+class MyTheme {
+  static final light = ThemeData(
+    timePickerTheme: TimePickerThemeData(
+      shape:
+      RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),
+    fontFamily: 'Poppins',
+    brightness: Brightness.light,
+    primaryColor: const Color(0xFF5C85C1).withOpacity(0.8),
+    backgroundColor: Colors.white,
+  );
+
+  static final darkTheme = ThemeData(
+    fontFamily: 'Poppins',
+    brightness: Brightness.light,
+    primaryColor: const Color(0xFF5C85C1).withOpacity(0.8),
+    scaffoldBackgroundColor: const Color(0xFF121212),
   );
 }
 
